@@ -1,8 +1,8 @@
 <?php
-$host = "";
-$db = "";
+$host = "http://192.168.100.154/";
+$db = "Gambol";
 $user = "root";
-$pass = "";
+$pass = "";     
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);

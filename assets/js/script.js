@@ -1,212 +1,235 @@
-import { StudentList } from "./data.js";
+let students = [];
+let formMode = "Add";
+let selectedStudentID = -1;
+const baseURL = "./assets/php/student.php";
 
-let students = [...StudentList];
-let formMode = "";
-let selectedStudentId = -1;
+const $tbody = $("#student-data");
 
-const tbody = document.getElementById("student-data");
+const $addBtn = $("#add-btn");
+const $editBtn = $("#edit-btn");
+const $deleteBtn = $("#delete-btn");
+const $saveBtn = $("#save-btn");
+const $cancelBtn = $("#cancel-btn");
 
-const addBtn = document.getElementById("add-btn");
-const editBtn = document.getElementById("edit-btn");
-const deleteBtn = document.getElementById("delete-btn");
-const saveBtn = document.getElementById("save-btn");
-const cancelBtn = document.getElementById("cancel-btn");
+const $txtLastname = $("#txt-lastname");
+const $txtFirstname = $("#txt-firstname");
+const $txtMiddlename = $("#txt-middlename");
+const $txtGender = $("#txt-gender");
+const $txtYearLevel = $("#txt-year-level");
+const $txtSection = $("#txt-section");
+const $txtEmail = $("#txt-email");
 
-const fields = {
-  lastName: document.getElementById("txt-lastName"),
-  firstName: document.getElementById("txt-firstName"),
-  middleName: document.getElementById("txt-middleName"),
-  gender: document.getElementById("txt-gender"),
-  yearLevel: document.getElementById("txt-year-level"),
-  section: document.getElementById("txt-section"),
-  email: document.getElementById("txt-email")
-};
+const $placeholderLastname = $("#placeholder-lastname");
+const $placeholderFirstname = $("#placeholder-firstname");
+const $placeholderMiddlename = $("#placeholder-middlename");
+const $placeholderGender = $("#placeholder-gender");
+const $placeholderYearLevel = $("#placeholder-year-level");
+const $placeholderSection = $("#placeholder-section");
+const $placeholderEmail = $("#placeholder-email");
 
-document.addEventListener("DOMContentLoaded", () => {
-  resetForm();
-  fetchStudentData();
+$(document).ready(function () {
+    resetForm();
+    fetchStudentData();
 });
 
-addBtn.addEventListener("click", () => {
-  formMode = "Add";
-  selectedStudentId = -1;
-  clearInputFields();
-  enableFormFields(true);
-  toggleButtons(true, false);
-});
 
-editBtn.addEventListener("click", () => {
-  if (selectedStudentId === -1) return;
+$addBtn.on("click", function() {});
+$editBtn.on("click", function() {});
+$deleteBtn.on("click", function() {});
+$saveBtn.on("click", function() {});
+$cancelBtn.on("click", function() {});
 
-  const student = getStudentById(selectedStudentId);
-  if (!student) return;
-
-  formMode = "Edit";
-  populateFormFields(student);
-  enableFormFields(true);
-  toggleButtons(true, false);
-});
-
-deleteBtn.addEventListener("click", () => {
-  if (selectedStudentId === -1) return;
-
-  if (!confirm("Are you sure you want to delete this student?")) return;
-
-  deleteStudent();
-  resetForm();
-  fetchStudentData();
-});
-
-saveBtn.addEventListener("click", () => {
-  if (validateForm().length > 0) return;
-
-  if (formMode === "Add") {
-    addStudent();
-  } else if (formMode === "Edit") {
-    updateStudent();
-  }
-
-  resetForm();
-  fetchStudentData();
-});
-
-cancelBtn.addEventListener("click", () => {
-  resetForm();
-  if (selectedStudentId !== -1) {
-    const student = getStudentById(selectedStudentId);
-    if (student) {
-      populateFormFields(student);
-    }
-  }
-});
-
-function fetchStudentData() {
-  tbody.innerHTML = "";
-
-  students.forEach((student) => {
-    const row = document.createElement("tr");
-
-    row.innerHTML = `
-      <td>${student.lastname}</td>
-      <td>${student.firstname}</td>
-      <td>${student.middlename}</td>
-      <td>${student.gender}</td>
-      <td>${student.year_level}</td>
-      <td>${student.section}</td>
-      <td>${student.email}</td>
-    `;
-
-    row.addEventListener("click", () => {
-      selectedStudentId = student.id;
-      populateFormFields(student);
-      enableFormFields(false);
-      toggleButtons(false, true);
-    });
-
-    tbody.appendChild(row);
-  });
-}
-
-function addStudent() {
-  const nextId = students.length
-    ? Math.max(...students.map((s) => Number(s.id))) + 1
-    : 1;
-
-  students.push({
-    id: String(nextId),
-    lastname: fields.lastName.value.trim(),
-    firstname: fields.firstName.value.trim(),
-    middlename: fields.middleName.value.trim(),
-    gender: fields.gender.value.trim(),
-    year_level: fields.yearLevel.value.trim(),
-    section: fields.section.value.trim(),
-    email: fields.email.value.trim()
-  });
-
-  selectedStudentId = String(nextId);
-  formMode = "";
-}
-
-function updateStudent() {
-  const student = getStudentById(selectedStudentId);
-  if (!student) return;
-
-  student.lastname = fields.lastName.value.trim();
-  student.firstname = fields.firstName.value.trim();
-  student.middlename = fields.middleName.value.trim();
-  student.gender = fields.gender.value.trim();
-  student.year_level = fields.yearLevel.value.trim();
-  student.section = fields.section.value.trim();
-  student.email = fields.email.value.trim();
-
-  formMode = "";
-}
-
-function deleteStudent() {
-  const index = students.findIndex((s) => String(s.id) === String(selectedStudentId));
-  if (index >= 0) {
-    students.splice(index, 1);
-  }
-
-  selectedStudentId = -1;
-  formMode = "";
-}
-
-function populateFormFields(student) {
-  fields.lastName.value = student.lastname || "";
-  fields.firstName.value = student.firstname || "";
-  fields.middleName.value = student.middlename || "";
-  fields.gender.value = student.gender || "";
-  fields.yearLevel.value = student.year_level || "";
-  fields.section.value = student.section || "";
-  fields.email.value = student.email || "";
-}
-
-function clearInputFields() {
-  Object.values(fields).forEach((input) => {
-    input.value = "";
-  });
-}
 
 function resetForm() {
-  formMode = "";
-  selectedStudentId = -1;
-  clearInputFields();
-  enableFormFields(false);
   toggleButtons(false, false);
+  enableFormFields(false);
+  resetPlaceholder();
+  resetInputFields();
 }
 
-function toggleButtons(showSaveCancel = false, showEditDelete = false) {
-  saveBtn.classList.toggle("display-none", !showSaveCancel);
-  cancelBtn.classList.toggle("display-none", !showSaveCancel);
-  editBtn.classList.toggle("display-none", !showEditDelete);
-  deleteBtn.classList.toggle("display-none", !showEditDelete);
+function renderStudents(){
+    $tbody.empty();
+    students.forEach(function (student) {
+        const $row = $("<tr></tr>");
+        $("<td></td>").text(student.lastname).appendTo($row);
+        $("<td></td>").text(student.firstname).appendTo($row);
+        $("<td></td>").text(student.middlename).appendTo($row);
+        $("<td></td>").text(student.gender).appendTo($row);
+        $("<td></td>").text(student.year_level).appendTo($row);
+        $("<td></td>").text(student.section).appendTo($row);
+        $("<td></td>").text(student.email).appendTo($row);
+
+        $row.on("click", function () {
+            resetForm();
+            displayStudentDetails(student);
+            toggleButtons(false, true);
+        });
+
+        $tbody.append($row);
+    });
+
 }
 
-function enableFormFields(enable = false) {
-  Object.values(fields).forEach((input) => {
-    input.disabled = !enable;
-  });
+function displayStudentDetails(student){
+    if (!student) return;
+
+    selectedStudentID = student.id;
+
+    $("#placeholder-value-lastname").text(student.lastname);
+    $("#placeholder-value-firstname").text(student.firstname);
+    $("#placeholder-value-middlename").text(student.middlename);
+    $("#placeholder-value-gender").text(student.gender);
+    $("#placeholder-value-year-level").text(student.year_level);
+    $("#placeholder-value-section").text(student.section);
+    $("#placeholder-value-email").text(student.email);
 }
 
-function validateForm() {
-  const errors = [];
 
-  if (!fields.lastName.value.trim()) errors.push("Last Name is required.");
-  if (!fields.firstName.value.trim()) errors.push("First Name is required.");
-  if (!fields.middleName.value.trim()) errors.push("Middle Name is required.");
-  if (!fields.gender.value.trim()) errors.push("Gender is required.");
-  if (!fields.yearLevel.value.trim()) errors.push("Year Level is required.");
-  if (!fields.section.value.trim()) errors.push("Section is required.");
-  if (!fields.email.value.trim()) errors.push("Email is required.");
 
-  if (errors.length > 0) {
-    alert(errors.join("\n"));
-  }
 
-  return errors;
+function toggleButtons(showSaveCancelBtn = false, showAddEditDeleteBtn = false){
+    $saveBtn.toggleClass(
+        "display-none",
+        !showSaveCancelBtn
+    );
+
+    $cancelBtn.toggleClass(
+        "display-none",
+        !showSaveCancelBtn
+    );
+
+    $editBtn.toggleClass(
+        "display-none",
+        !showAddEditDeleteBtn
+    );
+
+    $deleteBtn.toggleClass(
+        "display-none",
+        !showAddEditDeleteBtn
+    );
 }
 
-function getStudentById(studentId) {
-  return students.find((student) => String(student.id) === String(studentId));
+function enableFormFields(enable = false){
+    $(".textbox").toggleClass(
+        "default-text",
+        !enable
+    );
+
+    const $inputs = $(
+        "#txt-lastname, " +
+        "#txt-firstname, " +
+        "#txt-middlename, " +
+        "#txt-gender, " +
+        "#txt-year-level, " +
+        "#txt-section, " +
+        "#txt-email"
+    );
+
+    $inputs.prop("disabled", !enable);
+}
+
+function resetPlaceholder(){
+    $placeholderLastname.html(
+        `Last Name: <span id="placeholder-value-lastname"></span>`
+    );
+
+    $placeholderFirstname.html(
+        `First Name: <span id="placeholder-value-firstname"></span>`
+    );
+
+    $placeholderMiddlename.html(
+        `Middle Name: <span id="placeholder-value-middlename"></span>`
+    );
+
+    $placeholderGender.html(
+        `Gender: <span id="placeholder-value-gender"></span>`
+    );
+
+    $placeholderYearLevel.html(
+        `Year Level: <span id="placeholder-value-year-level"></span>`
+    );
+
+    $placeholderSection.html(
+        `Section: <span id="placeholder-value-section"></span>`
+    );
+
+    $placeholderEmail.html(
+        `Email: <span id="placeholder-value-email"></span>`
+    );
+}
+
+function resetInputFields(){
+    const $inputs = $(
+        "#txt-lastname, " +
+        "#txt-firstname, " +
+        "#txt-middlename, " +
+        "#txt-gender, " +
+        "#txt-year-level, " +
+        "#txt-section, " +
+        "#txt-email"
+    );
+
+    $inputs.val("");
+}
+
+
+function getAllStudents(){
+    return $.ajax({
+        url:baseURL,
+        type: "GET",
+        data:{
+            "get-all-students": 1
+        },
+        dataType: "json"
+    })
+}
+
+function fetchStudentData(){
+    $tbody.html(`
+        <tr>
+            <td colspan="7">Loading student records...</td>
+        </tr>
+    `);
+
+    getAllStudents()
+        .done(function (response) {
+            if (!response.success) {
+                showTableMessage(response.error || "Unable to fetch students.");
+                return;
+            }
+
+            students = response.data.map(normalizeStudent);
+            renderStudents();
+        })
+        .fail(function (xhr) {
+            const response = xhr.responseJSON || {};
+            const message = response.error || "Unable to fetch student records.";
+
+            showTableMessage(message);
+        });
+}
+
+function showTableMessage(message){
+    const $row = $("<tr></tr>");
+    $("<td></td>")
+        .attr("colspan", 7)
+        .text(message)
+        .appendTo($row);
+
+    $tbody.empty().append($row);
+}
+
+function normalizeStudent(student){
+    return {
+        id: Number(student.id),
+        lastname: student.lastname || "",
+        firstname: student.firstname || "",
+        middlename: student.middlename || "",
+        gender: student.gender || "",
+        year_level: student.acadlevel_name || student.year_level || "",
+        section: student.section_name || student.section || "",
+        email: student.email || "",
+        acadlevel_id: student.acadlevel_id || "",
+        section_id: student.section_id || ""
+    };
 }
