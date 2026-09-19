@@ -9,370 +9,103 @@
 </head>
 
 <body>
-
-    <div class="main-container">
+    <div class="maincontainer">
         <div class="col1">
-
             <div class="header">
-                <h1>Student Information</h1>
-                <input type="button" value="Add" class="button btn-add">
+                <h1>Student Infomation</h1>
+                <input type="button" value="Add" id="add-btn" class="button btn-add">
             </div>
 
             <div class="table-container">
                 <table>
                     <thead>
-                        <th>LastName</th>
-                        <th>FirstName</th>
-                        <th>MiddleName</th>
-                        <th>Age</th>
-                        <th>Gender</th>
-                        <th>Address</th>
-                        <th>Year Level</th>
-                        <th>Section</th>
-                        <th>Email</th>
+                        <tr>
+                            <th>LastName</th>
+                            <th>FirstName</th>
+                            <th>MiddleName</th>
+                            <th>Gender</th>
+                            <th>Year Level</th>
+                            <th>Section</th>
+                            <th>Email</th>
+                        </tr>
                     </thead>
 
-                    <tbody>
-                        <tr>
-                            <td>GAMBOL</td>
-                            <td>JOSHUA</td>
-                            <td>RUIZ</td>
-                            <td>20</td>
-                            <td>MALE</td>
-                            <td>Northville 3 Blk 5 Lot 138 Bulacan, Meycauyan Ciy, Bayugo</td>
-                            <td>2ND YEAR</td>
-                            <td>ACT</td>
-                            <td>joshuagambol183@gmail.com</td>
-                        </td>
-                      
-                        <tr>
-                            <td>CODON</td>
-                            <td>JOMAR</td>
-                            <td>CELIS</td>
-                            <td>20</td>
-                            <td>MALE</td>
-                            <td>Northville 3 blk 5 lot 154 Meyc.Bul City</td>
-                            <td>2ND YEAR</td>
-                            <td>ACT</td>
-                            <td>jomarcods25@gmail.com</td>
-                        </tr>
-                        <tr>
-                            <td>ORBE</td>
-                            <td>RHAYLEY</td>
-                            <td>N/A</td>
-                            <td>19</td>
-                            <td>MALE</td>
-                            <td>Perez Road 748,Meyc.Bul City</td>
-                            <td>2ND YEAR</td>
-                            <td>ACT</td>
-                            <td>rhayleyorbe@gmail.com</td>
-                        </tr>
-                        <tr>
-                            <td>YAGYAGAN</td>
-                            <td>KENNETH</td>
-                            <td>DALUZ</td>
-                            <td>20</td>
-                            <td>MALE</td>
-                            <td>Dulo Lambakin,Marilao BUl.</td>
-                            <td>2ND YEAR</td>
-                            <td>ACT</td>
-                            <td>kennethyagyagan@gmail.com</td>
-                        </tr>
+                    <tbody id="student-data"></tbody>
 
-                        <tr>
-                            <td>GUERRERO</td>
-                            <td>NATHANIEL</td>
-                            <td>AUTSRIA</td>
-                            <td>23</td>
-                            <td>MALE</td>
-                            <td>Lias Marilao.Bul City</td>
-                            <td>2ND YEAR</td>
-                            <td>ACT</td>
-                            <td>nathangurero@gmail.com</td>
-                        </tr>
-                        <tr>
-                            <td>MEDILLO</td>
-                            <td>FRANCIS LLOYD</td>
-                            <td>CAPULA</td>
-                            <td>19</td>
-                            <td>MALE</td>
-                            <td>Rosal street Bancal,Meyc.Bul City</td>
-                            <td>2ND YEAR</td>
-                            <td>ACT</td>
-                            <td>francislloydmedillo@gmail.com</td>
-                        </tr>
-
-                        <tr>
-                            <td>PEPITO</td>
-                            <td>ROMMEL</td>
-                            <td>CELOSO</td>
-                            <td>19</td>
-                            <td>MALE</td>
-                            <td>315 Bancal,Meyc.Bul City</td>
-                            <td>2ND YEAR</td>
-                            <td>ACT</td>
-                            <td>pepitorommel1401@gmail.com</td>
-                        </tr>
-
-                        <tr>
-                            <td>FRANCISCO</td>
-                            <td>JONH HENRY</td>
-                            <td>PEREZ</td>
-                            <td>19</td>
-                            <td>MALE</td>
-                            <td>923 Balaongan Ibaba,Meyc.Bul City</td>
-                            <td>2ND YEAR</td>
-                            <td>ACT</td>
-                            <td>johnhenryfrancisco04@gmail.com</td>
-                        </tr>
-
-                        <tr>
-                            <td>TOBIAS</td>
-                            <td>BRENT YAEL</td>
-                            <td>REBLORA</td>
-                            <td>19</td>
-                            <td>MALE</td>
-                            <td>Marimel SUBD Marilao.Bul City</td>
-                            <td>2ND YEAR</td>
-                            <td>ACT</td>
-                            <td>yaeltobias555@gmail.com</td>
-                        </tr>
-
-                        <tr>
-                            <td>RONIDEL</td>
-                            <td>MARTINE</td>
-                            <td>N/A</td>
-                            <td>18</td>
-                            <td>MALE</td>
-                            <td>897 Acacia Street ST.Martin Ibayo Marilao.Bul City</td>
-                            <td>2ND YEAR</td>
-                            <td>ACT</td>
-                            <td>martineronidel87@gmail.com</td>
-                        </tr>
-
-                        <tr>
-
-                            <td>GAITE</td>
-                            <td>LORDAVE</td>
-                            <td>AVILA</td>
-                            <td>19</td>
-                            <td>MALE</td>
-                            <td> Saith CAthrine Meyc.Bul City</td>
-                            <td>2ND YEAR</td>
-                            <td>ACT</td>
-                            <td>gaitelordave@gmail.com</td>
-                        </tr>
-
-                        <tr>
-                            <td>DE LEON</td>
-                            <td>KIRK TYRONE</td>
-                            <td>GUEVAREL</td>
-                            <td>23</td>
-                            <td>MALE</td>
-                            <td> Perez,Meyc.Bul City</td>
-                            <td>2ND YEAR</td>
-                            <td>ACT</td>
-                            <td>kirktyronedeleon@gmail.com</td>
-                        </tr>
-
-                        <tr>
-                            <td>DELA CRUZ</td>
-                            <td>PATRICK CHRISTIAN</td>
-                            <td>BUSTAMANTE</td>
-                            <td>27</td>
-                            <td>MALE</td>
-                            <td> POBLACION Marilao.Bul City</td>
-                            <td>2ND YEAR</td>
-                            <td>ACT</td>
-                            <td>patrickc2420@gmail.com</td>
-                        </tr>
-
-                        <tr>
-                            <td>ADOLFO</td>
-                            <td>JOHN PAUL</td>
-                            <td>LACASA</td>
-                            <td>20</td>
-                            <td>MALE</td>
-                            <td> Daungan Malhacan, Meyc.Bul City</td>
-                            <td>2ND YEAR</td>
-                            <td>ACT</td>
-                            <td>johnpauladolfo@gmail.com</td>
-                        </tr>
-
-                        <tr>
-                            <td>BUSA</td>
-                            <td>MARK PHILIP</td>
-                            <td>ABORDE</td>
-                            <td>19</td>
-                            <td>MALE</td>
-                            <td>SAOG,Marilao.Bul City</td>
-                            <td>2ND YEAR</td>
-                            <td>ACT</td>
-                            <td>busadagul@gmail.com</td>
-                        </tr>
-
-                        <tr>
-                            <td>MENDOZA</td>
-                            <td>CLARISSA</td>
-                            <td>AFAN</td>
-                            <td>19</td>
-                            <td>FEMALE</td>
-                            <td>56 ST,PETER Veinte Reales VELENZUELA.City</td>
-                            <td>2ND YEAR</td>
-                            <td>ACT</td>
-                            <td>clarissaafanmendoza@gmail.com</td>
-                        </tr>
-
-                        <tr>
-                            <td>SUNGA</td>
-                            <td>KHIALYN</td>
-                            <td>HALASON</td>
-                            <td>20</td>
-                            <td>FEMALE</td>
-                            <td>Northvile 3 Blk.9 Lot.225 Meyc.Bul City</td>
-                            <td>2ND YEAR</td>
-                            <td>ACT</td>
-                            <td>khialynsunga21@gmail.com</td>
-                        </tr>
-
-                        <tr>
-                            <td>HIPE</td>
-                            <td>ANGEL MAY</td>
-                            <td>ORTIZ</td>
-                            <td>23</td>
-                            <td>FEMALE</td>
-                            <td>Northvile 3 Blk.9 Lot.250 Bul City</td>
-                            <td>2ND YEAR</td>
-                            <td>ACT</td>
-                            <td>angelmayorortizhipe@gmail.com</td>
-                        </tr>
-
-                        <tr>
-                            <td>BALIGUAT</td>
-                            <td>SUMMER</td>
-                            <td>BABALA</td>
-                            <td>19</td>
-                            <td>FEMALE</td>
-                            <td>260 PAJO,Meyc.Bul City</td>
-                            <td>2ND YEAR</td>
-                            <td>ACT</td>
-                            <td>baliguatsummer@gmail.com</td>
-                        </tr>
-
-                        <tr>
-                            <td>MORESCA</td>
-                            <td>ELOISA</td>
-                            <td>LEMOSTERO</td>
-                            <td>20</td>
-                            <td>FEMALE</td>
-                            <td>DECA HOME SALUSOY St.NICKEL Meyc.Bul City</td>
-                            <td>2ND YEAR</td>
-                            <td>ACT</td>
-                            <td>eloisamoresca02@gmail.com</td>
-                        </tr>
-
-                        <tr>
-                            <td>GADE</td>
-                            <td>LOVELY</td>
-                            <td>MANGANGO</td>
-                            <td>19</td>
-                            <td>FEMALE</td>
-                            <td>DECA HOME SALUSOY St.OPAL Bul City</td>
-                            <td>2ND YEAR</td>
-                            <td>ACT</td>
-                            <td>lyhegade17@gmail.com</td>
-                        </tr>
-
-                        <tr>
-                            <td>PLACIDO</td>
-                            <td>MA VENUS</td>
-                            <td></td>
-                            <td>GERSALIA</td>
-                            <td>FEMALE</td>
-                            <td>COSTANTINO AVENUE POBLACION,MARILAO.Bul City</td>
-                            <td>2ND YEAR</td>
-                            <td>ACT</td>
-                            <td>placidovenus4@gmail.com</td>
-                        </tr>
-                    </tbody>
 
                 </table>
             </div>
         </div>
 
         <div class="col2">
-
             <div class="col2-header-container">
                 <div class="col2-header">
                     <h2>Student Information</h2>
-                    <p>Select a student to see details</p>
+                    <p>Select a Student to See Details</p>
                 </div>
 
-                <input type="button" value="Edit" class="button btn-edit">
-                <input type="button" value="Delete" class="button btn-delete">
+                <input type="button" value="Edit" id="edit-btn" class="button btn-edit">
+                <input type="button" value="Delete" id="delete-btn" class="button btn-delete">
             </div>
-
-            <div class="form-container">
-                <form action="">
-
+            <div class="form-cointainer">
+                <form action="  ">
                     <div class="textbox">
-                        <input type="text" name="firstname" required>
-                        <label class="txtbox-label" for="firstname">
-                            <span class="placeholder">Last Name</span>
+                        <input type="text" name="lastName" id="txt-lastName" required>
+                        <label class="txtbox-label" for="lastName">
+                            <span class="placeholder" id="placeholder-lastName">Last Name</span>
                         </label>
                     </div>
-
-                                        <div class="textbox">
-                        <input type="text" name="firstname" required>
-                        <label class="txtbox-label" for="firstname">
-                            <span class="placeholder">First Name</span>
+                    <div class="textbox">
+                        <input type="text" name="firstName" id="txt-firstName" required>
+                        <label class="txtbox-label" for="firstName">
+                            <span class="placeholder" id="placeholder-firstName">First Name</span>
                         </label>
                     </div>
-
-
                     <div class="textbox">
-                        <input type="text" name="middlename" required>
-                        <label class="txtbox-label" for="middlename">
-                            <span class="placeholder">Middle Name</span>
+                        <input type="text" name="middleName" id="txt-middleName" required>
+                        <label class="txtbox-label" for="middleName">
+                            <span class="placeholder" id="placeholder-middleName">Middle Name</span>
                         </label>
                     </div>
-
-
                     <div class="textbox">
-                        <input type="text" name="gender" required>
+                        <input type="text" name="gender" id="txt-gender" required>
                         <label class="txtbox-label" for="gender">
-                            <span class="placeholder">Gender</span>
+                            <span class="placeholder" id="placeholder-gender">Gender</span>
                         </label>
                     </div>
-
-
                     <div class="textbox">
-                        <input type="text" name="year-level" required>
+                        <input type="text" name="year-level" id="txt-year-level" required>
                         <label class="txtbox-label" for="year-level">
-                            <span class="placeholder">Year Level</span>
+                            <span class="placeholder" id="placeholder-year-level">Year Level</span>
                         </label>
                     </div>
-
                     <div class="textbox">
-                        <input type="text" name="section" required>
+                        <input type="text" name="section" id="txt-section" required>
                         <label class="txtbox-label" for="section">
-                            <span class="placeholder">Section</span>
+                            <span class="placeholder" id="placeholder-section">Section</span>
                         </label>
                     </div>
-
                     <div class="textbox">
-                        <input type="text" name="email" required>
+                        <input type="text" name="email" id="txt-email" required>
                         <label class="txtbox-label" for="email">
-                            <span class="placeholder">Email</span>
+                            <span class="placeholder" id="placeholder-email">Email</span>
                         </label>
                     </div>
-
+                    <div class="class-action-btn-container">
+                        <input type="button" value="Save" id="save-btn" class="button btn-save">
+                        <input type="button" value="Cancel" id="cancel-btn" class="button btn-cancel">
+                    </div>
                 </form>
             </div>
-
-
         </div>
-    </div>
+        
+        <script type="module" src="./assets/js/script.js"></script>
+
+        <script
+  src="https://code.jquery.com/jquery-4.0.0.min.js"
+  integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+  crossorigin="anonymous"></script>
+
 </body>
 
-</html>
+</html> 
